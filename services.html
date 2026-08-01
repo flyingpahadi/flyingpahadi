@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services — Flying Pahadi Digital</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Source+Serif+4:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAF9F6;
+    --paper-dim:#F2F0E9;
+    --ink:#1A2129;
+    --ink-soft:#4A5058;
+    --amber:#E29B3A;
+    --amber-deep:#C97F22;
+    --pine:#4C6B63;
+    --hairline:#E4E1D8;
+    --white:#FFFFFF;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--paper);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;}
+  h1,h2,h3,.display{font-family:'Space Grotesk',sans-serif;font-weight:600;letter-spacing:-0.02em;color:var(--ink);}
+  .eyebrow{font-family:'Source Serif 4',serif;font-style:italic;font-size:0.95rem;color:var(--amber-deep);}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+  @media(max-width:640px){.wrap{padding:0 20px;}}
+  @media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important;}}
+
+  header{position:sticky;top:0;z-index:50;background:rgba(250,249,246,0.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--hairline);}
+  nav{display:flex;align-items:center;justify-content:space-between;padding:18px 0;}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.15rem;}
+  .logo-mark{width:26px;height:26px;flex-shrink:0;}
+  .nav-links{display:flex;gap:36px;font-size:0.95rem;font-weight:500;}
+  .nav-links a{color:var(--ink-soft);transition:color 0.2s;}
+  .nav-links a:hover, .nav-links a.active{color:var(--ink);}
+  .nav-links a.active{color:var(--amber-deep);}
+  .nav-cta{background:var(--ink);color:var(--paper);padding:10px 20px;border-radius:2px;font-size:0.9rem;font-weight:600;transition:background 0.2s;}
+  .nav-cta:hover{background:var(--amber-deep);}
+  .menu-toggle{display:none;background:none;border:none;font-size:1.5rem;cursor:pointer;color:var(--ink);}
+  @media(max-width:840px){.nav-links{display:none;}.nav-cta{display:none;}.menu-toggle{display:block;}}
+
+  /* PAGE HERO */
+  .page-hero{padding:80px 0 56px;position:relative;overflow:hidden;}
+  .page-hero h1{font-size:clamp(2.2rem,4.5vw,3.4rem);margin:14px 0 18px;max-width:700px;}
+  .page-hero p.lead{font-size:1.1rem;color:var(--ink-soft);max-width:560px;}
+  .ridge{width:100%;height:60px;display:block;}
+  .ridge path{fill:none;stroke:var(--ink);stroke-width:2;}
+
+  section{padding:80px 0;}
+  .section-head{max-width:600px;margin-bottom:48px;}
+  .section-head h2{font-size:clamp(1.6rem,3vw,2.2rem);margin-top:10px;}
+
+  /* DETAILED SERVICES */
+  .svc-list{display:flex;flex-direction:column;}
+  .svc-row{
+    display:grid;grid-template-columns:60px 1fr 1fr;gap:32px;
+    padding:44px 0;border-top:1px solid var(--hairline);align-items:start;
+  }
+  .svc-row:last-child{border-bottom:1px solid var(--hairline);}
+  @media(max-width:820px){.svc-row{grid-template-columns:1fr;gap:14px;}}
+  .svc-icon{width:44px;height:44px;}
+  .svc-title h3{font-size:1.4rem;margin-bottom:10px;}
+  .svc-title p{color:var(--ink-soft);font-size:0.98rem;max-width:340px;}
+  .svc-includes{display:flex;flex-direction:column;gap:10px;}
+  .svc-includes .item{display:flex;gap:10px;font-size:0.94rem;align-items:flex-start;}
+  .svc-includes .item svg{flex-shrink:0;margin-top:3px;}
+
+  /* PACKAGES */
+  .pack-sec{background:var(--paper-dim);}
+  .packages{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  @media(max-width:900px){.packages{grid-template-columns:1fr;}}
+  .pack{background:var(--white);border:1px solid var(--hairline);border-radius:4px;padding:32px;display:flex;flex-direction:column;}
+  .pack.highlight{border-color:var(--ink);position:relative;box-shadow:0 20px 50px -30px rgba(26,33,41,0.3);}
+  .pack.highlight::before{content:'Most chosen';position:absolute;top:-13px;left:32px;background:var(--amber);color:var(--white);font-size:0.72rem;font-weight:700;padding:4px 10px;border-radius:2px;letter-spacing:0.04em;text-transform:uppercase;}
+  .pack h3{font-size:1.2rem;margin-bottom:6px;}
+  .pack .price{font-family:'Space Grotesk';font-size:1.8rem;margin:10px 0 4px;}
+  .pack .price span{font-size:0.9rem;color:var(--ink-soft);font-weight:400;font-family:'Inter';}
+  .pack .desc{color:var(--ink-soft);font-size:0.9rem;margin-bottom:20px;}
+  .pack ul{list-style:none;display:flex;flex-direction:column;gap:11px;margin-bottom:26px;flex-grow:1;}
+  .pack li{display:flex;gap:9px;font-size:0.92rem;align-items:flex-start;}
+  .pack li svg{flex-shrink:0;margin-top:3px;}
+  .pack-btn{text-align:center;padding:12px;border-radius:2px;font-weight:600;font-size:0.92rem;border:1px solid var(--ink);}
+  .pack.highlight .pack-btn{background:var(--ink);color:var(--paper);}
+  .pack-btn:hover{background:var(--ink);color:var(--paper);}
+
+  /* FAQ */
+  .faq{display:flex;flex-direction:column;max-width:820px;}
+  .faq-item{border-top:1px solid var(--hairline);}
+  .faq-item:last-child{border-bottom:1px solid var(--hairline);}
+  .faq-q{width:100%;text-align:left;background:none;border:none;padding:22px 0;display:flex;justify-content:space-between;align-items:center;font-family:'Space Grotesk';font-size:1.02rem;font-weight:600;color:var(--ink);cursor:pointer;}
+  .faq-q .plus{font-size:1.3rem;color:var(--amber-deep);transition:transform 0.25s;}
+  .faq-item.open .faq-q .plus{transform:rotate(45deg);}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height 0.3s ease;}
+  .faq-item.open .faq-a{max-height:220px;}
+  .faq-a p{padding-bottom:22px;color:var(--ink-soft);font-size:0.95rem;max-width:640px;}
+
+  .cta-sec{text-align:center;}
+  .cta-sec h2{font-size:clamp(1.9rem,4vw,2.6rem);max-width:680px;margin:14px auto 30px;}
+  .cta-btns{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;}
+  .btn-primary{background:var(--ink);color:var(--paper);padding:14px 28px;border-radius:2px;font-weight:600;font-size:0.95rem;display:inline-block;transition:transform 0.2s, background 0.2s;}
+  .btn-primary:hover{background:var(--amber-deep);transform:translateY(-2px);}
+  .btn-secondary{border:1px solid var(--ink);padding:14px 28px;border-radius:2px;font-weight:600;font-size:0.95rem;display:inline-block;transition:all 0.2s;}
+  .btn-secondary:hover{background:var(--ink);color:var(--paper);}
+
+  footer{border-top:1px solid var(--hairline);padding:40px 0 28px;}
+  .foot-bottom{display:flex;justify-content:space-between;font-size:0.82rem;color:var(--ink-soft);flex-wrap:wrap;gap:10px;}
+
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity 0.6s ease, transform 0.6s ease;}
+  .reveal.show{opacity:1;transform:translateY(0);}
+  a:focus-visible, button:focus-visible{outline:2px solid var(--amber-deep);outline-offset:2px;}
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <a href="index.html" class="logo">
+      <svg class="logo-mark" viewBox="0 0 26 26" fill="none">
+        <path d="M2 20 L9 8 L13 14 L17 6 L24 20 Z" fill="var(--ink)"/>
+        <path d="M17 6 L20 11 L24 20 L17 20 Z" fill="var(--amber)"/>
+      </svg>
+      Flying Pahadi Digital
+    </a>
+    <div class="nav-links">
+      <a href="services.html" class="active">Services</a>
+      <a href="index.html#process">Process</a>
+      <a href="index.html#results">Results</a>
+      <a href="index.html#testimonials">Clients</a>
+    </div>
+    <a href="index.html#contact" class="nav-cta">Start a project</a>
+    <button class="menu-toggle" aria-label="Menu">☰</button>
+  </nav>
+</header>
+
+<section class="page-hero">
+  <div class="wrap">
+    <p class="eyebrow">Services</p>
+    <h1>Everything your growth needs, under one roof.</h1>
+    <p class="lead">From the first line of code on your website to the campaign that fills your pipeline — pick a single service or let us run the whole stack.</p>
+  </div>
+  <svg class="ridge" viewBox="0 0 1180 60" preserveAspectRatio="none">
+    <path d="M0,50 L120,15 L220,45 L340,8 L460,42 L600,12 L740,48 L860,20 L1000,44 L1180,15" vector-effect="non-scaling-stroke"/>
+  </svg>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="svc-list">
+
+      <div class="svc-row reveal">
+        <svg class="svc-icon" viewBox="0 0 34 34"><path d="M4 26 L14 10 L18 16 L23 7 L30 26 Z" fill="none" stroke="var(--ink)" stroke-width="1.8"/></svg>
+        <div class="svc-title">
+          <h3>Website design & build</h3>
+          <p>Fast, mobile-first websites engineered to turn visitors into enquiries — not just look good in a screenshot.</p>
+        </div>
+        <div class="svc-includes">
+          <div class="item"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 8 L6 12 L14 3" stroke="var(--pine)" stroke-width="2" fill="none"/></svg>Custom design, not templates</div>
+          <div class="item"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 8 L6 12 L14 3" stroke="var(--pine)" stroke-width="2" fill="none"/></svg>Mobile-responsive from day one</div>
+          <div class="item"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 8 L6 12 L14 3" stroke="var(--pine)" stroke-width="2" fill="none"/></svg>Built-in speed & SEO foundations</div>
+          <div class="item"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 8 L6 12 L14 3" stroke="var(--pine)" stroke-width="2" fill="none"/></svg>CMS handover so you can edit it yourself</div>
+        </div>
+      </div>
+
+      <div class="svc-row reveal">
+        <svg class="svc-icon" viewBox="0 0 34 34"><circle cx="17" cy="17" r="10" fill="none" stroke="var(--ink)" stroke-width="1.8"/><path d="M17 17 L24 12" stroke="var(--ink)" stroke-width="1.8"/></svg>
+        <div class="svc-title">
+          <h3>SEO & search visibility</h3>
+          <p>Technical audits, content strategy, and link building aimed at rankings that bring in buyers, not just traffic.</p>
+        </div>
+        <div class="svc-includes">
+          <div class="item"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 8 L6 12 L14 3" stroke="var(--pine)" stroke-width="2" fill="none"/></svg>Technical SEO audit & fixes</div>
+          <div class="item"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 8 L6 12 L14 3" stroke="var(--pine)" stroke-width="2" fill="none"/></svg>Keyword & content strategy</div>
+          <div class="item"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 8 L6 12 L14 3" stroke="var(--pine)" stroke-width="2" fill="none"/></svg>On-page optimisation, monthly</div>
+          <div class="item"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 8 L6 12 L14 3" stroke="var(--pine)" stroke-width="2" fill="none"/></svg>Ranking & traffic reporting</div>
+        </div>
+      </div>
+
+      <div class="svc-row reveal">
+        <svg class="svc-icon" viewBox="0 0 34 34"><rect x="6" y="8" width="22" height="18" rx="2" fill="none" stroke="var(--ink)" stroke-width="1.8"/><path d="M10 22 L14 14 L18 18 L24 10" fill="none" stroke="var(--amber-deep)" stroke-width="1.8"/></svg>
+        <div class="svc-title">
+          <h3>Paid performance ads</h3>
+          <p>Google, Meta, and LinkedIn campaigns run on a tight loop of testing, tracking, and cutting spend that doesn't convert.</p>
+        </div>
+        <div class="svc-includes">
+          <div class="item"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 8 L6 12 L14 3" stroke="var(--pine)" stroke-width="2" fill="none"/></svg>Campaign setup & tracking</div>
+          <div class="item"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 8 L6 12 L14 3" stroke="var(--pine)" stroke-width="2" fill="none"/></svg>Creative & ad copy testing</div>
+          <div class="item"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 8 L6 12 L14 3" stroke="var(--pine)" stroke-width="2" fill="none"/></svg>Weekly budget optimisation</div>
+          <div class="item"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 8 L6 12 L14 3" stroke="var(--pine)" stroke-width="2" fill="none"/></svg>Cost-per-lead reporting</div>
+        </div>
+      </div>
+
+      <div class="svc-row reveal">
+        <svg class="svc-icon" viewBox="0 0 34 34"><path d="M8 26 L8 12 L17 6 L26 12 L26 26 Z" fill="none" stroke="var(--ink)" stroke-width="1.8"/></svg>
+        <div class="svc-title">
+          <h3>Content & brand strategy</h3>
+          <p>Positioning, blog systems, and sales collateral written for the buyer you're actually trying to reach.</p>
+        </div>
+        <div class="svc-includes">
+          <div class="item"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 8 L6 12 L14 3" stroke="var(--pine)" stroke-width="2" fill="none"/></svg>Brand voice & messaging</div>
+          <div class="item"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 8 L6 12 L14 3" stroke="var(--pine)" stroke-width="2" fill="none"/></svg>Blog & article writing</div>
+          <div class="item"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 8 L6 12 L14 3" stroke="var(--pine)" stroke-width="2" fill="none"/></svg>Sales decks & brochures</div>
+          <div class="item"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 8 L6 12 L14 3" stroke="var(--pine)" stroke-width="2" fill="none"/></svg>Case studies</div>
+        </div>
+      </div>
+
+      <div class="svc-row reveal">
+        <svg class="svc-icon" viewBox="0 0 34 34"><circle cx="12" cy="14" r="4" fill="none" stroke="var(--ink)" stroke-width="1.8"/><circle cx="22" cy="20" r="4" fill="none" stroke="var(--ink)" stroke-width="1.8"/><path d="M15 16 L19 18" stroke="var(--ink)" stroke-width="1.8"/></svg>
+        <div class="svc-title">
+          <h3>Social & community</h3>
+          <p>Editorial calendars and creative that build a real audience, instead of just posting into the void.</p>
+        </div>
+        <div class="svc-includes">
+          <div class="item"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 8 L6 12 L14 3" stroke="var(--pine)" stroke-width="2" fill="none"/></svg>Content calendar & posting</div>
+          <div class="item"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 8 L6 12 L14 3" stroke="var(--pine)" stroke-width="2" fill="none"/></svg>Reels & short-form creative</div>
+          <div class="item"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 8 L6 12 L14 3" stroke="var(--pine)" stroke-width="2" fill="none"/></svg>Community engagement</div>
+          <div class="item"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 8 L6 12 L14 3" stroke="var(--pine)" stroke-width="2" fill="none"/></svg>Monthly performance review</div>
+        </div>
+      </div>
+
+      <div class="svc-row reveal">
+        <svg class="svc-icon" viewBox="0 0 34 34"><path d="M6 24 L12 14 L17 20 L24 8 L28 24" fill="none" stroke="var(--ink)" stroke-width="1.8"/></svg>
+        <div class="svc-title">
+          <h3>Analytics & reporting</h3>
+          <p>Dashboards that show what's working in plain numbers, reviewed with you every month — not buried in a PDF.</p>
+        </div>
+        <div class="svc-includes">
+          <div class="item"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 8 L6 12 L14 3" stroke="var(--pine)" stroke-width="2" fill="none"/></svg>GA4 & conversion tracking setup</div>
+          <div class="item"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 8 L6 12 L14 3" stroke="var(--pine)" stroke-width="2" fill="none"/></svg>Live performance dashboard</div>
+          <div class="item"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 8 L6 12 L14 3" stroke="var(--pine)" stroke-width="2" fill="none"/></svg>Monthly strategy call</div>
+          <div class="item"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 8 L6 12 L14 3" stroke="var(--pine)" stroke-width="2" fill="none"/></svg>Plain-language reporting</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="pack-sec">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">Packages</p>
+      <h2>Three ways to start.</h2>
+    </div>
+    <div class="packages reveal">
+      <div class="pack">
+        <h3>Foundation</h3>
+        <div class="price">₹25,000<span> one-time</span></div>
+        <p class="desc">For businesses that need a credible website before anything else.</p>
+        <ul>
+          <li><svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 8 L6 12 L14 3" stroke="var(--pine)" stroke-width="2" fill="none"/></svg>Up to 5-page website</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 8 L6 12 L14 3" stroke="var(--pine)" stroke-width="2" fill="none"/></svg>Mobile-responsive build</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 8 L6 12 L14 3" stroke="var(--pine)" stroke-width="2" fill="none"/></svg>Basic on-page SEO</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 8 L6 12 L14 3" stroke="var(--pine)" stroke-width="2" fill="none"/></svg>1 round of revisions</li>
+        </ul>
+        <a href="index.html#contact" class="pack-btn">Get started</a>
+      </div>
+      <div class="pack highlight">
+        <h3>Growth</h3>
+        <div class="price">₹35,000<span>/mo</span></div>
+        <p class="desc">For businesses ready to run SEO and paid ads together.</p>
+        <ul>
+          <li><svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 8 L6 12 L14 3" stroke="var(--pine)" stroke-width="2" fill="none"/></svg>Everything in Foundation</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 8 L6 12 L14 3" stroke="var(--pine)" stroke-width="2" fill="none"/></svg>Ongoing SEO & content</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 8 L6 12 L14 3" stroke="var(--pine)" stroke-width="2" fill="none"/></svg>Paid ads management</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 8 L6 12 L14 3" stroke="var(--pine)" stroke-width="2" fill="none"/></svg>Monthly reporting call</li>
+        </ul>
+        <a href="index.html#contact" class="pack-btn">Get started</a>
+      </div>
+      <div class="pack">
+        <h3>Full stack</h3>
+        <div class="price">Custom</div>
+        <p class="desc">For businesses that want the whole engine run for them.</p>
+        <ul>
+          <li><svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 8 L6 12 L14 3" stroke="var(--pine)" stroke-width="2" fill="none"/></svg>Everything in Growth</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 8 L6 12 L14 3" stroke="var(--pine)" stroke-width="2" fill="none"/></svg>Social & content production</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 8 L6 12 L14 3" stroke="var(--pine)" stroke-width="2" fill="none"/></svg>Brand strategy & collateral</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 8 L6 12 L14 3" stroke="var(--pine)" stroke-width="2" fill="none"/></svg>Dedicated account lead</li>
+        </ul>
+        <a href="index.html#contact" class="pack-btn">Talk to us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">FAQ</p>
+      <h2>Questions we get before onboarding.</h2>
+    </div>
+    <div class="faq reveal">
+      <div class="faq-item">
+        <button class="faq-q">How long does a website take to build? <span class="plus">+</span></button>
+        <div class="faq-a"><p>Most 5-page sites go live in 2–3 weeks from content handover. Larger builds are scoped after the audit.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Do you work with businesses outside India? <span class="plus">+</span></button>
+        <div class="faq-a"><p>Yes — we currently support clients across 8 countries and run all reporting and calls in English.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Can I start with just one service? <span class="plus">+</span></button>
+        <div class="faq-a"><p>Yes. Most clients start with a website or SEO audit, then add channels once the foundation is solid.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What do you need from us to start? <span class="plus">+</span></button>
+        <div class="faq-a"><p>Brand assets if you have them, access to your current site/ads accounts, and one hour for the kickoff call.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-sec">
+  <div class="wrap reveal">
+    <p class="eyebrow">Ready when you are</p>
+    <h2>Pick a service, or let's scope the whole engine together.</h2>
+    <div class="cta-btns">
+      <a href="mailto:hello@flyingpahadidigital.com" class="btn-primary">hello@flyingpahadidigital.com</a>
+      <a href="index.html#contact" class="btn-secondary">Book a call</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-bottom">
+      <span>© 2026 Flying Pahadi Digital. All rights reserved.</span>
+      <span>Delhi, India</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target);} });
+  },{threshold:0.12});
+  revealEls.forEach(el=>io.observe(el));
+
+  document.querySelectorAll('.faq-q').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      btn.parentElement.classList.toggle('open');
+    });
+  });
+</script>
+
+</body>
+</html>
